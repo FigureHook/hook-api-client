@@ -11,6 +11,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     client: AuthenticatedClient,
+    purpose: Union[Unset, None, str] = UNSET,
     page: Union[Unset, None, int] = 1,
     size: Union[Unset, None, int] = 50,
 ) -> Dict[str, Any]:
@@ -20,6 +21,8 @@ def _get_kwargs(
     cookies: Dict[str, Any] = client.get_cookies()
 
     params: Dict[str, Any] = {}
+    params["purpose"] = purpose
+
     params["page"] = page
 
     params["size"] = size
@@ -60,12 +63,14 @@ def _build_response(*, response: httpx.Response) -> Response[Union[HTTPValidatio
 def sync_detailed(
     *,
     client: AuthenticatedClient,
+    purpose: Union[Unset, None, str] = UNSET,
     page: Union[Unset, None, int] = 1,
     size: Union[Unset, None, int] = 50,
 ) -> Response[Union[HTTPValidationError, PageReleaseTicketInDB]]:
     """Get Multi Release Tickets
 
     Args:
+        purpose (Union[Unset, None, str]):
         page (Union[Unset, None, int]):  Default: 1.
         size (Union[Unset, None, int]):  Default: 50.
 
@@ -75,6 +80,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         client=client,
+        purpose=purpose,
         page=page,
         size=size,
     )
@@ -90,12 +96,14 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
+    purpose: Union[Unset, None, str] = UNSET,
     page: Union[Unset, None, int] = 1,
     size: Union[Unset, None, int] = 50,
 ) -> Optional[Union[HTTPValidationError, PageReleaseTicketInDB]]:
     """Get Multi Release Tickets
 
     Args:
+        purpose (Union[Unset, None, str]):
         page (Union[Unset, None, int]):  Default: 1.
         size (Union[Unset, None, int]):  Default: 50.
 
@@ -105,6 +113,7 @@ def sync(
 
     return sync_detailed(
         client=client,
+        purpose=purpose,
         page=page,
         size=size,
     ).parsed
@@ -113,12 +122,14 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
+    purpose: Union[Unset, None, str] = UNSET,
     page: Union[Unset, None, int] = 1,
     size: Union[Unset, None, int] = 50,
 ) -> Response[Union[HTTPValidationError, PageReleaseTicketInDB]]:
     """Get Multi Release Tickets
 
     Args:
+        purpose (Union[Unset, None, str]):
         page (Union[Unset, None, int]):  Default: 1.
         size (Union[Unset, None, int]):  Default: 50.
 
@@ -128,6 +139,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         client=client,
+        purpose=purpose,
         page=page,
         size=size,
     )
@@ -141,12 +153,14 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
+    purpose: Union[Unset, None, str] = UNSET,
     page: Union[Unset, None, int] = 1,
     size: Union[Unset, None, int] = 50,
 ) -> Optional[Union[HTTPValidationError, PageReleaseTicketInDB]]:
     """Get Multi Release Tickets
 
     Args:
+        purpose (Union[Unset, None, str]):
         page (Union[Unset, None, int]):  Default: 1.
         size (Union[Unset, None, int]):  Default: 50.
 
@@ -157,6 +171,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
+            purpose=purpose,
             page=page,
             size=size,
         )

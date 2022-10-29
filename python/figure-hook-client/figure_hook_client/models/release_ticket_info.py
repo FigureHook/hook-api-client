@@ -11,18 +11,18 @@ class ReleaseTicketInfo:
     Attributes:
         id (str):
         release_count (int):
-        created_for (str):
+        purpose (str):
     """
 
     id: str
     release_count: int
-    created_for: str
+    purpose: str
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
         release_count = self.release_count
-        created_for = self.created_for
+        purpose = self.purpose
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -30,7 +30,7 @@ class ReleaseTicketInfo:
             {
                 "id": id,
                 "release_count": release_count,
-                "created_for": created_for,
+                "purpose": purpose,
             }
         )
 
@@ -43,12 +43,12 @@ class ReleaseTicketInfo:
 
         release_count = d.pop("release_count")
 
-        created_for = d.pop("created_for")
+        purpose = d.pop("purpose")
 
         release_ticket_info = cls(
             id=id,
             release_count=release_count,
-            created_for=created_for,
+            purpose=purpose,
         )
 
         release_ticket_info.additional_properties = d

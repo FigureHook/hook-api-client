@@ -12,24 +12,24 @@ class ReleaseTicketCreate:
     """
     Attributes:
         from_ (datetime.datetime):
-        created_for (str):
+        purpose (str):
     """
 
     from_: datetime.datetime
-    created_for: str
+    purpose: str
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         from_ = self.from_.isoformat()
 
-        created_for = self.created_for
+        purpose = self.purpose
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "from": from_,
-                "created_for": created_for,
+                "purpose": purpose,
             }
         )
 
@@ -40,11 +40,11 @@ class ReleaseTicketCreate:
         d = src_dict.copy()
         from_ = isoparse(d.pop("from"))
 
-        created_for = d.pop("created_for")
+        purpose = d.pop("purpose")
 
         release_ticket_create = cls(
             from_=from_,
-            created_for=created_for,
+            purpose=purpose,
         )
 
         release_ticket_create.additional_properties = d
