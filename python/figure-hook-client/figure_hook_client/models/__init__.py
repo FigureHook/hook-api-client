@@ -27,6 +27,7 @@ from .product_update import ProductUpdate
 from .release_feed import ReleaseFeed
 from .release_ticket_create import ReleaseTicketCreate
 from .release_ticket_in_db import ReleaseTicketInDB
+from .release_ticket_info import ReleaseTicketInfo
 from .series_create import SeriesCreate
 from .series_in_db import SeriesInDB
 from .series_update import SeriesUpdate

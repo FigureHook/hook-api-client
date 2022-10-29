@@ -5,7 +5,7 @@ import httpx
 from ...client import AuthenticatedClient
 from ...models.http_validation_error import HTTPValidationError
 from ...models.release_ticket_create import ReleaseTicketCreate
-from ...models.release_ticket_in_db import ReleaseTicketInDB
+from ...models.release_ticket_info import ReleaseTicketInfo
 from ...types import Response
 
 
@@ -31,9 +31,9 @@ def _get_kwargs(
     }
 
 
-def _parse_response(*, response: httpx.Response) -> Optional[Union[HTTPValidationError, ReleaseTicketInDB]]:
+def _parse_response(*, response: httpx.Response) -> Optional[Union[HTTPValidationError, ReleaseTicketInfo]]:
     if response.status_code == 201:
-        response_201 = ReleaseTicketInDB.from_dict(response.json())
+        response_201 = ReleaseTicketInfo.from_dict(response.json())
 
         return response_201
     if response.status_code == 422:
@@ -43,7 +43,7 @@ def _parse_response(*, response: httpx.Response) -> Optional[Union[HTTPValidatio
     return None
 
 
-def _build_response(*, response: httpx.Response) -> Response[Union[HTTPValidationError, ReleaseTicketInDB]]:
+def _build_response(*, response: httpx.Response) -> Response[Union[HTTPValidationError, ReleaseTicketInfo]]:
     return Response(
         status_code=response.status_code,
         content=response.content,
@@ -56,14 +56,14 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: ReleaseTicketCreate,
-) -> Response[Union[HTTPValidationError, ReleaseTicketInDB]]:
+) -> Response[Union[HTTPValidationError, ReleaseTicketInfo]]:
     """Create Release Ticket
 
     Args:
         json_body (ReleaseTicketCreate):
 
     Returns:
-        Response[Union[HTTPValidationError, ReleaseTicketInDB]]
+        Response[Union[HTTPValidationError, ReleaseTicketInfo]]
     """
 
     kwargs = _get_kwargs(
@@ -83,14 +83,14 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: ReleaseTicketCreate,
-) -> Optional[Union[HTTPValidationError, ReleaseTicketInDB]]:
+) -> Optional[Union[HTTPValidationError, ReleaseTicketInfo]]:
     """Create Release Ticket
 
     Args:
         json_body (ReleaseTicketCreate):
 
     Returns:
-        Response[Union[HTTPValidationError, ReleaseTicketInDB]]
+        Response[Union[HTTPValidationError, ReleaseTicketInfo]]
     """
 
     return sync_detailed(
@@ -103,14 +103,14 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: ReleaseTicketCreate,
-) -> Response[Union[HTTPValidationError, ReleaseTicketInDB]]:
+) -> Response[Union[HTTPValidationError, ReleaseTicketInfo]]:
     """Create Release Ticket
 
     Args:
         json_body (ReleaseTicketCreate):
 
     Returns:
-        Response[Union[HTTPValidationError, ReleaseTicketInDB]]
+        Response[Union[HTTPValidationError, ReleaseTicketInfo]]
     """
 
     kwargs = _get_kwargs(
@@ -128,14 +128,14 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: ReleaseTicketCreate,
-) -> Optional[Union[HTTPValidationError, ReleaseTicketInDB]]:
+) -> Optional[Union[HTTPValidationError, ReleaseTicketInfo]]:
     """Create Release Ticket
 
     Args:
         json_body (ReleaseTicketCreate):
 
     Returns:
-        Response[Union[HTTPValidationError, ReleaseTicketInDB]]
+        Response[Union[HTTPValidationError, ReleaseTicketInfo]]
     """
 
     return (
