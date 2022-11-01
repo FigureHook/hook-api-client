@@ -8,11 +8,11 @@ from ...types import Response
 
 
 def _get_kwargs(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Dict[str, Any]:
-    url = "{}/api/v1/webhooks/{channel_id}".format(client.base_url, channel_id=channel_id)
+    url = "{}/api/v1/webhooks/{webhook_id}".format(client.base_url, webhook_id=webhook_id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
@@ -47,21 +47,21 @@ def _build_response(*, response: httpx.Response) -> Response[Union[Any, HTTPVali
 
 
 def sync_detailed(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Response[Union[Any, HTTPValidationError]]:
     """Delete Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
 
     Returns:
         Response[Union[Any, HTTPValidationError]]
     """
 
     kwargs = _get_kwargs(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
     )
 
@@ -74,41 +74,41 @@ def sync_detailed(
 
 
 def sync(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Optional[Union[Any, HTTPValidationError]]:
     """Delete Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
 
     Returns:
         Response[Union[Any, HTTPValidationError]]
     """
 
     return sync_detailed(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Response[Union[Any, HTTPValidationError]]:
     """Delete Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
 
     Returns:
         Response[Union[Any, HTTPValidationError]]
     """
 
     kwargs = _get_kwargs(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
     )
 
@@ -119,14 +119,14 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Optional[Union[Any, HTTPValidationError]]:
     """Delete Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
 
     Returns:
         Response[Union[Any, HTTPValidationError]]
@@ -134,7 +134,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            channel_id=channel_id,
+            webhook_id=webhook_id,
             client=client,
         )
     ).parsed

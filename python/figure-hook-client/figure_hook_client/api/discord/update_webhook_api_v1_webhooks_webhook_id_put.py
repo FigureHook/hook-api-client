@@ -10,12 +10,12 @@ from ...types import Response
 
 
 def _get_kwargs(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
     json_body: WebhookCreate,
 ) -> Dict[str, Any]:
-    url = "{}/api/v1/webhooks/{channel_id}".format(client.base_url, channel_id=channel_id)
+    url = "{}/api/v1/webhooks/{webhook_id}".format(client.base_url, webhook_id=webhook_id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
@@ -54,7 +54,7 @@ def _build_response(*, response: httpx.Response) -> Response[Union[DecryptedWebh
 
 
 def sync_detailed(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
     json_body: WebhookCreate,
@@ -62,7 +62,7 @@ def sync_detailed(
     """Update Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
         json_body (WebhookCreate):
 
     Returns:
@@ -70,7 +70,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
         json_body=json_body,
     )
@@ -84,7 +84,7 @@ def sync_detailed(
 
 
 def sync(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
     json_body: WebhookCreate,
@@ -92,7 +92,7 @@ def sync(
     """Update Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
         json_body (WebhookCreate):
 
     Returns:
@@ -100,14 +100,14 @@ def sync(
     """
 
     return sync_detailed(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
         json_body=json_body,
     ).parsed
 
 
 async def asyncio_detailed(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
     json_body: WebhookCreate,
@@ -115,7 +115,7 @@ async def asyncio_detailed(
     """Update Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
         json_body (WebhookCreate):
 
     Returns:
@@ -123,7 +123,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        channel_id=channel_id,
+        webhook_id=webhook_id,
         client=client,
         json_body=json_body,
     )
@@ -135,7 +135,7 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    channel_id: str,
+    webhook_id: str,
     *,
     client: AuthenticatedClient,
     json_body: WebhookCreate,
@@ -143,7 +143,7 @@ async def asyncio(
     """Update Webhook
 
     Args:
-        channel_id (str):
+        webhook_id (str):
         json_body (WebhookCreate):
 
     Returns:
@@ -152,7 +152,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            channel_id=channel_id,
+            webhook_id=webhook_id,
             client=client,
             json_body=json_body,
         )

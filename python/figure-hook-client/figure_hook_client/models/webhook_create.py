@@ -15,6 +15,8 @@ class WebhookCreate:
     Attributes:
         id (str):
         token (str):
+        channel_id (str):
+        guild_id (str):
         is_nsfw (Union[Unset, bool]):  Default: True.
         lang (Union[Unset, WebhookLang]): An enumeration. Default: WebhookLang.EN.
         currency (Union[Unset, WebhookCurrency]): An enumeration. Default: WebhookCurrency.JPY.
@@ -22,6 +24,8 @@ class WebhookCreate:
 
     id: str
     token: str
+    channel_id: str
+    guild_id: str
     is_nsfw: Union[Unset, bool] = True
     lang: Union[Unset, WebhookLang] = WebhookLang.EN
     currency: Union[Unset, WebhookCurrency] = WebhookCurrency.JPY
@@ -30,6 +34,8 @@ class WebhookCreate:
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
         token = self.token
+        channel_id = self.channel_id
+        guild_id = self.guild_id
         is_nsfw = self.is_nsfw
         lang: Union[Unset, str] = UNSET
         if not isinstance(self.lang, Unset):
@@ -45,6 +51,8 @@ class WebhookCreate:
             {
                 "id": id,
                 "token": token,
+                "channel_id": channel_id,
+                "guild_id": guild_id,
             }
         )
         if is_nsfw is not UNSET:
@@ -62,6 +70,10 @@ class WebhookCreate:
         id = d.pop("id")
 
         token = d.pop("token")
+
+        channel_id = d.pop("channel_id")
+
+        guild_id = d.pop("guild_id")
 
         is_nsfw = d.pop("is_nsfw", UNSET)
 
@@ -82,6 +94,8 @@ class WebhookCreate:
         webhook_create = cls(
             id=id,
             token=token,
+            channel_id=channel_id,
+            guild_id=guild_id,
             is_nsfw=is_nsfw,
             lang=lang,
             currency=currency,

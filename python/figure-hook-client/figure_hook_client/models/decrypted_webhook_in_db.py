@@ -18,6 +18,7 @@ class DecryptedWebhookInDB:
         id (str):
         token (str):
         channel_id (str):
+        guild_id (str):
         created_at (datetime.datetime):
         updated_at (datetime.datetime):
         decrypted_token (str):
@@ -30,6 +31,7 @@ class DecryptedWebhookInDB:
     id: str
     token: str
     channel_id: str
+    guild_id: str
     created_at: datetime.datetime
     updated_at: datetime.datetime
     decrypted_token: str
@@ -43,6 +45,7 @@ class DecryptedWebhookInDB:
         id = self.id
         token = self.token
         channel_id = self.channel_id
+        guild_id = self.guild_id
         created_at = self.created_at.isoformat()
 
         updated_at = self.updated_at.isoformat()
@@ -66,6 +69,7 @@ class DecryptedWebhookInDB:
                 "id": id,
                 "token": token,
                 "channel_id": channel_id,
+                "guild_id": guild_id,
                 "created_at": created_at,
                 "updated_at": updated_at,
                 "decrypted_token": decrypted_token,
@@ -90,6 +94,8 @@ class DecryptedWebhookInDB:
         token = d.pop("token")
 
         channel_id = d.pop("channel_id")
+
+        guild_id = d.pop("guild_id")
 
         created_at = isoparse(d.pop("created_at"))
 
@@ -119,6 +125,7 @@ class DecryptedWebhookInDB:
             id=id,
             token=token,
             channel_id=channel_id,
+            guild_id=guild_id,
             created_at=created_at,
             updated_at=updated_at,
             decrypted_token=decrypted_token,
